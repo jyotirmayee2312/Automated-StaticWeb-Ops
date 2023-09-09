@@ -1,6 +1,6 @@
 name: CI/CD for Static Website
 
-on: 
+on:
   push:
     branches:
       - main
@@ -27,11 +27,16 @@ jobs:
 
     - uses: actions/checkout@v2
 
-    - name: Deploy to S3
-      uses: jakejarvis/s3-sync-action@master
+    - name: SSH into EC2
+      uses: appleboy/ssh-action@master
       with:
-        args: --delete
-      env:
-        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+
+    - name: Copy Website Files
+      run: scp -r ./path/to/your/website/* ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/path/to/destination/on/ec2/
+
+    - name: Restart Web Server
+      run: ssh ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "sudo systemctl restart apache2" # Adjust this command based on your web server
+
