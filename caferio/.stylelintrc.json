@@ -1,1 +1,11 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "block-no-empty": true,
+    "color-hex-case": "lower",
+    "declaration-colon-space-after": "always",
+    "declaration-colon-space-before": "never",
+    "selector-type-no-unknown": [true, { "ignore": ["custom-elements"] }]
+  }
+}
 
