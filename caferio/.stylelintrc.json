@@ -1,9 +1,9 @@
 {
   "extends": "stylelint-config-standard",
   "rules": {
-    "indentation": 2,    // Use 2 spaces for indentation
-    "block-no-empty": true, // Disallow empty blocks
-    "declaration-colon-space-before": "never", // No space before colon in declarations
-    "declaration-colon-space-after": "always" // Space after colon in declarations
+    "indentation": 2,
+    "block-no-empty": true,
+    "declaration-colon-space-before": "never",
+    "declaration-colon-space-after": "always"
   }
 }
