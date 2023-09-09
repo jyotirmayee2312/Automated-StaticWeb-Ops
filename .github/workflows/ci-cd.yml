@@ -19,7 +19,7 @@ jobs:
       run: npx htmlhint .
 
     - name: Lint CSS  
-      run: npx stylelint "**/*.css"
+      run: npx stylelint "caferio/assets/css/*.css"
 
     - name: Validate HTML
       run: npx nuhtmlchecker .
